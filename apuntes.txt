@@ -23,3 +23,55 @@ Abrimos Thunder client para enviar peticiones:
 http://127.0.0.1:8000/url
 http://127.0.0.1:8000
 
+Paso 3: crea un operación de path¶
+Path¶
+
+"Path" aquí se refiere a la última parte de una URL comenzando desde el primer /.
+
+Entonces, en una URL como:
+
+https://example.com/items/foo
+
+...el path sería:
+
+/items/foo
+
+Información
+
+Un "path" también se conoce habitualmente como "endpoint", "route" o "ruta".
+
+Cuando construyes una API, el "path" es la manera principal de separar los "intereses" y los "recursos".
+Operación¶
+
+"Operación" aquí se refiere a uno de los "métodos" de HTTP.
+
+Uno como:
+
+    POST
+    GET
+    PUT
+    DELETE
+
+...y los más exóticos:
+
+    OPTIONS
+    HEAD
+    PATCH
+    TRACE
+
+En el protocolo de HTTP, te puedes comunicar con cada path usando uno (o más) de estos "métodos".
+
+Cuando construyes APIs, normalmente usas uno de estos métodos específicos de HTTP para realizar una acción específica.
+
+Normalmente usas:
+
+    POST: para crear datos.
+    GET: para leer datos.
+    PUT: para actualizar datos.
+    DELETE: para borrar datos.
+
+Así que en OpenAPI, cada uno de estos métodos de HTTP es referido como una "operación".
+
+Nosotros también los llamaremos "operación".
+
+

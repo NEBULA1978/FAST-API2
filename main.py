@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+# from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -6,7 +7,7 @@ app = FastAPI()
 async def root():
     return "!Hola FastAPI"
 
-@app.get("/url")
-async def url():
-    return { "url","https://mouredev.com/python" }
 
+
+# Inicio Servidor:
+#  uvicorn main:app --reload
