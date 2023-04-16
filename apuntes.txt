@@ -1,0 +1,21 @@
+En el navegador dos peticiones get:
+
+http://127.0.0.1:8000/url0	
+RESULTADO:
+"https://mouredev.com/python"
+1	"url"
+
+http://127.0.0.1:8000
+RESULTADO:
+"!Hola FastAPI"
+
+Para instalar FastAPI:
+pip install fastapi
+pip install "uvicorn[standard]"
+
+Para iniciar FastAPI:
+uvicorn main:app --reload
+
+Pagina FastAPI WEB:
+http://127.0.0.1:8000/docs
+

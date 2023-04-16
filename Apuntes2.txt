@@ -1,0 +1,99 @@
+FastAPI es un moderno y rápido marco web para la construcción de APIs con Python, basado en estándares abiertos como OpenAPI y JSON Schema. Con FastAPI, puedes crear fácilmente APIs eficientes y escalables. Aquí te presento algunos métodos y técnicas comunes que puedes utilizar al trabajar con FastAPI:
+
+    Instalación:
+    Para instalar FastAPI, ejecuta el siguiente comando en tu terminal o CMD:
+
+bash
+
+pip install fastapi
+
+También necesitarás un servidor ASGI (Asynchronous Server Gateway Interface), como Uvicorn o Daphne. Para instalar Uvicorn, ejecuta:
+
+bash
+
+pip install uvicorn
+
+    Creación de una API básica:
+    Crea un archivo llamado main.py e importa FastAPI y crea una instancia de la aplicación:
+
+python
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}
+
+    Ejecuta tu API localmente:
+    Inicia tu API usando Uvicorn en la terminal:
+
+bash
+
+uvicorn main:app --reload
+
+    Documentación interactiva:
+    FastAPI genera automáticamente una documentación interactiva para tu API usando OpenAPI y Swagger UI. Visita http://127.0.0.1:8000/docs en tu navegador para explorar y probar tu API.
+
+    Creación de modelos Pydantic:
+    FastAPI utiliza Pydantic para la validación de datos y la conversión de tipos. Crea modelos Pydantic para definir la estructura de tus datos:
+
+python
+
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    description: str = None
+    price: float
+    tax: float = None
+
+@app.post("/items/")
+def create_item(item: Item):
+    return item
+
+    Validación de datos y parámetros de consulta:
+    Usa anotaciones de tipo y parámetros por defecto para validar y manejar parámetros de consulta:
+
+python
+
+from fastapi import Query
+
+@app.get("/items/")
+def read_items(q: str = Query(None, min_length=3, max_length=50)):
+    return {"q": q}
+
+    Autenticación y seguridad:
+    FastAPI facilita la implementación de autenticación y autorización utilizando esquemas de seguridad predefinidos, como OAuth2 y API Key. Aquí hay un ejemplo usando OAuth2 con contraseña y Bearer:
+
+python
+
+from fastapi import Depends, FastAPI, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+from pydantic import BaseModel
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+@app.get("/users/me")
+async def read_users_me(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
+
+    Manejo de excepciones:
+    Puedes manejar errores específicos y personalizar las respuestas de error utilizando HTTPException:
+
+python
+
+from fastapi import HTTPException
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int):
+    if item_id not in items:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return items[item_id]
+
+Estos son solo algunos ejemplos de lo que puedes hacer con FastAPI. Consulta la documentación
