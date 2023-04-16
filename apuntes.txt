@@ -19,3 +19,7 @@ uvicorn main:app --reload
 Pagina FastAPI WEB:
 http://127.0.0.1:8000/docs
 
+Abrimos Thunder client para enviar peticiones:
+http://127.0.0.1:8000/url
+http://127.0.0.1:8000
+
